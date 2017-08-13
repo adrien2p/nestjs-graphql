@@ -1,22 +1,31 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "target": "es2017",
     "declaration": false,
     "noImplicitAny": false,
-    "removeComments": true,
+    "removeComments": false,
+    "strictNullChecks": true,
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2017",
     "sourceMap": true,
-    "allowJs": true,
-    "outDir": "./dist"
+    "outDir": "build"
   },
   "include": [
-    "src/**/*"
+    "migrate.ts",
+    "src/server.ts",
+    "src/config/**/*.ts",
+    "src/filters/**/*.ts",
+    "src/lib/**/*.ts",
+    "src/middlewares/**/*.ts",
+    "src/migrations/**/*.ts",
+    "src/models/**/*.ts",
+    "src/modules/**/*.ts",
+    "tests/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
+    "assets"
   ]
 }

@@ -1,7 +1,8 @@
 {
-  "name": "nest-js-sequelize",
-  "version": "1.0.0",
-  "description": "Starter kit Nest + Sequelize",
+  "name": "nest-js-sequelize-jwt",
+  "version": "1.3.1",
+  "description": "Starter kit Nest + Sequelize + jwt",
+  "main": "src/server.ts",
   "keywords": [
     "nest",
     "nest-js",
@@ -9,14 +10,24 @@
     "orm",
     "nodejs",
     "node",
-    "typescript"
+    "typescript",
+    "jwt",
+    "jsonwebtoken",
+    "dotenv"
   ],
+  "author": {
+    "name": "Adrien de Peretti",
+    "email": "adrien.deperetti@gmail.com"
+  },
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrien2p/nest-js-sequelize-jwt/issues"
+  },
   "scripts": {
-    "start": "node index.js --env=NODE_ENV",
-    "prestart:prod": "tsc",
-    "start:prod": "npm run prestart:prod && node dist/server.js",
-    "migrate": "./node_modules/.bin/ts-node migrate.ts $1"
+    "lint": "tslint -c tslint.json -p tsconfig.json -e 'node_modules/**' -e '**/*.d.ts' -e 'tests/**' --type-check --fix 'src/**/*.ts'",
+    "migrate": "ts-node migrate.ts",
+    "start": "ts-node src/server.ts --env=NODE_ENV",
+    "test": "mocha -r ts-node/register tests/*.ts"
   },
   "dependencies": {
     "@nestjs/common": "^3.0.0",
@@ -26,14 +37,23 @@
     "@nestjs/websockets": "^3.0.0",
     "@types/express": "^4.0.36",
     "@types/geojson": "^1.0.2",
-    "@types/lodash": "^4.14.71",
+    "@types/graphql-type-json": "^0.1.1",
+    "@types/jsonwebtoken": "^7.2.3",
+    "@types/lodash": "^4.14.73",
     "@types/reflect-metadata": "0.0.5",
     "@types/sequelize": "^4.0.67",
     "@types/validator": "^6.2.1",
+    "apollo-server-express": "^1.1.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "codelyzer": "^3.1.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
+    "graphql": "^0.10.5",
+    "graphql-tools": "^1.2.1",
+    "graphql-type-json": "^0.1.4",
+    "jsonwebtoken": "^7.4.2",
+    "lodash": "^4.17.4",
     "pg": "^7.1.0",
     "pg-hstore": "^2.3.2",
     "redis": "^2.7.1",
@@ -44,7 +64,13 @@
     "umzug": "^2.0.1"
   },
   "devDependencies": {
-    "@types/node": "^8.0.19",
-    "ts-node": "^3.3.0"
+    "@types/chai": "^4.0.3",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^8.0.20",
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.6.0",
+    "tslint-config-standard": "^6.0.1"
   }
 }

@@ -1,8 +1,13 @@
 #env
 .env
 
-#js file
+#js file and map
 src/**/*.js
+src/**/*.js.map
+tests/**/*.js
+tests/**/*.js.map
+migrate.js
+migrate.js.map
 
 # dependencies
 /node_modules
@@ -15,16 +20,12 @@ src/**/*.js
 # misc
 npm-debug.log
 
-# example
-/quick-start
+# build
+/build
 
 # tests
-/test
 /coverage
 /.nyc_output
-
-# dist
-/dist
 
 #Package
 package-lock.json

@@ -1,11 +1,11 @@
 import * as crypto from 'crypto';
-import * as SequelizeStatic from "sequelize";
-import { DataTypes, Sequelize } from "sequelize";
-import { IUser, IUserInstance } from "../interfaces/model/IUser"
-import { MessageCodeError } from "../lib/error/MessageCodeError";
+import * as SequelizeStatic from 'sequelize';
+import { DataTypes, Sequelize } from 'sequelize';
+import { IUser, IUserInstance } from './interfaces/IUser';
+import { MessageCodeError } from '../lib/error/MessageCodeError';
 
-export default function User(sequelize: Sequelize, dataTypes: DataTypes): SequelizeStatic.Model<IUserInstance, IUser> {
-    let User = sequelize.define<IUserInstance, IUser>("User", {
+export default function User (sequelize: Sequelize, dataTypes: DataTypes): SequelizeStatic.Model<IUserInstance, IUser> {
+    let User = sequelize.define<IUserInstance, IUser>('User', {
         id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
@@ -71,18 +71,20 @@ export default function User(sequelize: Sequelize, dataTypes: DataTypes): Sequel
         classMethods: {},
         instanceMethods: {},
         hooks: {
-            beforeValidate(user: IUserInstance, options: any): void {
+            beforeValidate (user: IUserInstance, options: any): void {
                 if (!options.transaction) throw new Error('Missing transaction.');
-                if (!user.dataValues.firstName) throw new MessageCodeError('user:create:missingFirstName');
-                if (!user.dataValues.lastName) throw new MessageCodeError('user:create:missingLastName');
-                if (!user.dataValues.email) throw new MessageCodeError('user:create:missingEmail');
-                if (!user.dataValues.password) throw new MessageCodeError('user:create:missingPassword');
+                if (!user.getDataValue('firstName')) throw new MessageCodeError('user:create:missingFirstName');
+                if (!user.getDataValue('lastName')) throw new MessageCodeError('user:create:missingLastName');
+                if (!user.getDataValue('email')) throw new MessageCodeError('user:create:missingEmail');
+                if (!user.getDataValue('password')) throw new MessageCodeError('user:create:missingPassword');
             },
-            async afterCreate(user: IUserInstance, options: any): Promise<any> {
+            beforeCreate (user: IUserInstance, options: any): void {
                 if (!options.transaction) throw new Error('Missing transaction.');
 
-                const password = crypto.createHmac('sha256', user.dataValues.password).digest('hex');
-                await user.update({ password }, { transaction: options.transaction });
+                user.dataValues.password = crypto.createHmac('sha256', user.dataValues.password).digest('hex');
+            },
+            beforeDestroy (user: IUserInstance, options: any): void {
+                if (!options.transaction) throw new Error('Missing transaction.');
             }
         }
     });
