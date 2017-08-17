@@ -1,6 +1,6 @@
 {
   "name": "nest-js-graphql",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Starter kit Nest + Sequelize + jwt + graphql",
   "main": "src/server.ts",
   "keywords": [

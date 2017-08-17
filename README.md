@@ -1,13 +1,13 @@
 ![Nest](assets/logo.png)
 
-#### Project based on [nest-js-sequelize-jwt](https://github.com/adrien2p/nest-js-sequelize-jwt) and use
+### Project based on [nest-js-sequelize-jwt](https://github.com/adrien2p/nest-js-sequelize-jwt) and use
 
 - [graphql](http://graphql.org/)
 - [graphql-tools](https://github.com/apollographql/graphql-tools)
 - [graphql-type-json](https://github.com/taion/graphql-type-json)
 - [apollo-server-express](apollo-server-express)
 
- ### How it works
+### How it works
  
 - To run lint and fix `npm run lint`
 - To run tests suite `npm run test`
