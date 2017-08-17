@@ -21,8 +21,8 @@ To use the env variable, remove `.demo` from `.env.demo`.
 
 ### What is provided more
 
-This repo provide a `graphql` module which allow to request `users
-and filter them for authenticated user.`
+This repo provide a `graphql` module which allow to request `users`
+and filter them for authenticated user.
 
 ### Request example
 
