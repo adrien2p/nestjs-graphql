@@ -1,6 +1,6 @@
 ![Nest](assets/logo.png)
 
-This project is base on [nest-js-sequelize-jwt](https://github.com/adrien2p/nest-js-sequelize-jwt) and use
+#### Project based on [nest-js-sequelize-jwt](https://github.com/adrien2p/nest-js-sequelize-jwt) and use
 
 - [graphql](http://graphql.org/)
 - [graphql-tools](https://github.com/apollographql/graphql-tools)
