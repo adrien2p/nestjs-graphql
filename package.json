@@ -1,7 +1,7 @@
 {
-  "name": "nest-js-sequelize-jwt",
-  "version": "1.3.1",
-  "description": "Starter kit Nest + Sequelize + jwt",
+  "name": "nest-js-graphql",
+  "version": "1.0.0",
+  "description": "Starter kit Nest + Sequelize + jwt + graphql",
   "main": "src/server.ts",
   "keywords": [
     "nest",
@@ -13,7 +13,9 @@
     "typescript",
     "jwt",
     "jsonwebtoken",
-    "dotenv"
+    "dotenv",
+    "graphql",
+    "apollo-server-express"
   ],
   "author": {
     "name": "Adrien de Peretti",
@@ -21,7 +23,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/adrien2p/nest-js-sequelize-jwt/issues"
+    "url": "https://github.com/adrien2p/nest-js-graphql/issues"
   },
   "scripts": {
     "lint": "tslint -c tslint.json -p tsconfig.json -e 'node_modules/**' -e '**/*.d.ts' -e 'tests/**' --type-check --fix 'src/**/*.ts'",
