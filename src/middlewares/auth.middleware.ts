@@ -20,6 +20,7 @@ export class AuthMiddleware implements NestMiddleware {
                     }
                 });
                 if (!user) throw new MessageCodeError('request:unauthorized');
+                req['loggedInUser'] = user;
                 next();
             } else {
                 throw new MessageCodeError('request:unauthorized');

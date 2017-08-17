@@ -5,7 +5,7 @@
     "declaration": false,
     "noImplicitAny": false,
     "removeComments": false,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

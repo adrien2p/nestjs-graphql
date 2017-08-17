@@ -1,8 +1,11 @@
+'use strict';
+
 import * as crypto from 'crypto';
 import * as SequelizeStatic from 'sequelize';
 import { DataTypes, Sequelize } from 'sequelize';
-import { IUser, IUserInstance } from './interfaces/IUser';
 import { MessageCodeError } from '../lib/error/MessageCodeError';
+import { IUser, IUserInstance } from './interfaces/IUser';
+import { models } from './index';
 
 export default function User (sequelize: Sequelize, dataTypes: DataTypes): SequelizeStatic.Model<IUserInstance, IUser> {
     let User = sequelize.define<IUserInstance, IUser>('User', {
@@ -68,7 +71,13 @@ export default function User (sequelize: Sequelize, dataTypes: DataTypes): Seque
         timestamps: true,
         scopes: {},
         indexes: [],
-        classMethods: {},
+        classMethods: {
+            associate: (models) => {
+                User.hasMany(models.Car, {
+                    as: 'cars'
+                });
+            }
+        },
         instanceMethods: {},
         hooks: {
             beforeValidate (user: IUserInstance, options: any): void {

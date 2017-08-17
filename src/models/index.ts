@@ -6,9 +6,11 @@ import * as SequelizeStatic from 'sequelize';
 import { Sequelize } from 'sequelize';
 import { databaseConfig } from '../config/dataBase';
 import { IUser, IUserInstance } from './interfaces/IUser';
+import { ICar, ICarInstance } from "./interfaces/ICar";
 
 export interface SequelizeModels {
     User: SequelizeStatic.Model<IUserInstance, IUser>;
+    Car: SequelizeStatic.Model<ICarInstance, ICar>;
 }
 
 class Database {

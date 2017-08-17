@@ -87,5 +87,53 @@ export const errorMessagesConfig: { [messageCode: string]: IErrorMessages } = {
         httpStatus: HttpStatus.BAD_REQUEST,
         errorMessage: 'Unable to connect the user without password.',
         userMessage: 'Veuillez indiquer votre mot de passe.'
+    },
+    'car:create:missingInformation': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Unable to create a new car with missing information.',
+        userMessage: 'Impossible de créer un véhicule avec des données manquantes.'
+    },
+    'car:create:missingUserId': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Unable to create a new car without user id.',
+        userMessage: "Impossible de créer un véhicule sans l'id de l'utilisateur liée."
+    },
+    'car:create:missingBrandName': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Unable to create a new car without brand name.',
+        userMessage: "Impossible de créer un véhicule sans la marque."
+    },
+    'car:create:missingPurchaseDate': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Unable to create a new car without purchase date.',
+        userMessage: "Impossible de créer un véhicule sans la date d'acquisition."
+    },
+    'car:show:missingId': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Unable to find the car caused by missing information.',
+        userMessage: "Impossible de trouver un véhicule sans fournir d'id."
+    },
+    'car:update:missingId': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Unable to update the car caused by missing information.',
+        userMessage: "Impossible de mettre à jour le véhicule avec des données manquantes."
+    },
+    'car:notFound': {
+        type: 'notFound',
+        httpStatus: HttpStatus.NOT_FOUND,
+        errorMessage: 'Unable to found the car with the provided information.',
+        userMessage: 'Aucun véhicule trouvé avec les informations fourni.'
+    },
+    'car:delete:missingId': {
+        type: 'BadRequest',
+        httpStatus: HttpStatus.BAD_REQUEST,
+        errorMessage: 'Unable to delete the car caused by missing information.',
+        userMessage: "Impossible de supprimer un véhicule sans fournir d'id."
     }
 };
