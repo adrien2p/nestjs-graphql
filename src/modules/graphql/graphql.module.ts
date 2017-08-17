@@ -1,6 +1,8 @@
 'use strict';
 
 import { Module } from '@nestjs/common';
+import { MiddlewaresConsumer } from "@nestjs/common/interfaces/middlewares";
+import { AuthMiddleware } from "../../middlewares/auth.middleware";
 import { GraphqlController } from "./graphql.controller";
 
 @Module({
@@ -9,4 +11,8 @@ import { GraphqlController } from "./graphql.controller";
     modules: [],
     exports: []
 })
-export class GraphqlModule { }
+export class GraphqlModule {
+    configure(consumer: MiddlewaresConsumer) {
+        consumer.apply(AuthMiddleware).forRoutes(GraphqlController);
+    }
+}
