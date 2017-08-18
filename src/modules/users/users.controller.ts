@@ -9,7 +9,7 @@ import { models, sequelize } from '../../models/index';
 export class UsersController {
     @Get('users')
     public async index (req: Request, res: Response) {
-        const users = await models.User.findAll();
+        const users = await models.User.scope('cars').findAll();
         return res.status(HttpStatus.OK).json(users);
     }
 

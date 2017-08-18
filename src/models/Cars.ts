@@ -43,7 +43,14 @@ export default function Car (sequelize: Sequelize, dataTypes: DataTypes): Sequel
         timestamps: true,
         scopes: {},
         indexes: [],
-        classMethods: {},
+        classMethods: {
+            associate: (models: any) => {
+                Car.belongsTo(models.User, {
+                    as: 'owner',
+                    foreignKey: 'userId'
+                });
+            }
+        },
         instanceMethods: {},
         hooks: {
             beforeValidate (car: ICarInstance, options: any): void {

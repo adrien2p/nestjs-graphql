@@ -72,9 +72,18 @@ export default function User (sequelize: Sequelize, dataTypes: DataTypes): Seque
         scopes: {},
         indexes: [],
         classMethods: {
-            associate: (models) => {
+            associate: (models: any) => {
                 User.hasMany(models.Car, {
-                    as: 'cars'
+                    as: 'cars',
+                    foreignKey: 'userId'
+                });
+            },
+            loadScopes: (models: any) => {
+                User.addScope('cars', {
+                    include: [{
+                        model: models.Car,
+                        as: 'cars'
+                    }]
                 });
             }
         },
