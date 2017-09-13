@@ -1,20 +1,19 @@
 'use strict';
 
-import { Controller, Get, Post, Put, Delete, HttpStatus } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, Get, Post, Put, Delete, HttpStatus, Request, Response } from '@nestjs/common';
 import { MessageCodeError } from '../../lib/error/MessageCodeError';
 import { models, sequelize } from '../../models/index';
 
 @Controller()
 export class CarsController {
     @Get('cars')
-    public async index (req: Request, res: Response) {
+    public async index (@Request() req, @Response() res) {
         const cars = await models.Car.findAll();
         return res.status(HttpStatus.OK).json(cars);
     }
 
     @Post('cars')
-    public async create (req: Request, res: Response) {
+    public async create (@Request() req, @Response() res) {
         const body = req.body;
         if (!body || (body && Object.keys(body).length === 0)) throw new MessageCodeError('car:create:missingInformation');
 
@@ -26,7 +25,7 @@ export class CarsController {
     }
 
     @Get('cars/:id')
-    public async show (req: Request, res: Response) {
+    public async show (@Request() req, @Response() res) {
         const id = req.params.id;
         if (!id) throw new MessageCodeError('car:show:missingId');
 
@@ -37,7 +36,7 @@ export class CarsController {
     }
 
     @Put('cars/:id')
-    public async update (req: Request, res: Response) {
+    public async update (@Request() req, @Response() res) {
         const id = req.params.id;
         const body = req.body;
         if (!id) throw new MessageCodeError('car:update:missingId');
@@ -66,7 +65,7 @@ export class CarsController {
     }
 
     @Delete('cars/:id')
-    public async delete (req: Request, res: Response) {
+    public async delete (@Request() req, @Response() res) {
         const id = req.params.id;
         if (!id) throw new MessageCodeError('car:delete:missingId');
 
