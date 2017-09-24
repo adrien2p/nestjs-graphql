@@ -1,6 +1,6 @@
 {
   "name": "nest-js-graphql",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Starter kit Nest + Sequelize + jwt + graphql",
   "main": "src/server.ts",
   "keywords": [
@@ -29,7 +29,7 @@
     "lint": "tslint -c tslint.json -p tsconfig.json -e 'node_modules/**' -e '**/*.d.ts' -e 'tests/**' --type-check --fix 'src/**/*.ts'",
     "migrate": "ts-node migrate.ts",
     "start": "ts-node src/server.ts --env=NODE_ENV",
-    "test": "mocha -r ts-node/register tests/*.ts"
+    "test": "mocha -r ts-node/register src/**/tests/*.ts"
   },
   "dependencies": {
     "@nestjs/common": "^4.0.0",
@@ -62,6 +62,7 @@
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.3",
     "sequelize": "^4.8.3",
+    "sequelize-typescript": "^0.5.0",
     "typescript": "^2.5.2",
     "umzug": "^2.0.1"
   },

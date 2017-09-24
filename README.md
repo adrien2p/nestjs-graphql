@@ -56,7 +56,7 @@ And the result of this request is :
 `POST http://localhost:3000/graphql` with the following body :
 ```json
 {
-    "query": "{ getUsers(filter: { search: \"toto\" }) { id, firstName, lastName, email, cars {id, brandName, purchaseDate }}}"
+    "query": "{ getUsers(filter: { email: \"toto\" }) { id, firstName, lastName, email, cars {id, brandName, purchaseDate }}}"
 }
 ```
 

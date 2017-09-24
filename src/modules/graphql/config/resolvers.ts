@@ -2,15 +2,16 @@
 
 import * as _ from 'lodash';
 import * as GraphQLJSON from 'graphql-type-json';
-import { models, sequelize } from "../../../models/index";
-import { IUser, IUserInstance } from "../../../models/interfaces/IUser";
+import { User } from "../../common/models/User";
+import { Car } from "../../common/models/Car";
+import { sequelize } from "../../common/config/dataBase";
 
 export const resolvers = {
     JSON: GraphQLJSON,
     User: {
         /* Return cars belongs to the user when user(s) is/are requested. */
-        cars: async (user: IUserInstance) => {
-            return await models.Car.findAll({
+        cars: async (user: User) => {
+            return await Car.findAll<Car>({
                 where: { userId: user.getDataValue('id') }
             });
         },
@@ -26,7 +27,7 @@ export const resolvers = {
                 if (filter.firstName) where.firstName = { $ilike: `%${filter.firstName}%` };
                 if (filter.lastName) where.lastName = { $ilike: `%${filter.lastName}%` };
             }
-            return models.User.findAll({
+            return User.findAll<User>({
                 where,
                 offset,
                 limit,
@@ -45,7 +46,7 @@ export const resolvers = {
                 if (filter.brandName) where.brandName = { $ilike: `%${filter.brandName}%` };
                 if (filter.purchareDate) where.purchareDate = { $eq: filter.purchareDate };
             }
-            return models.Car.findAll({
+            return Car.findAll<Car>({
                 where,
                 offset,
                 limit,
@@ -57,10 +58,10 @@ export const resolvers = {
     },
     Mutation: {
         updateUser: async(_, data) => {
-            const values: IUser = data.values;
+            const values: User = data.values;
             if (!values || !values.id) throw new Error('Missing user id.');
 
-            let user = await models.User.findById(values.id);
+            let user = await User.findById(values.id);
             if (!user) throw new Error('User not found.');
 
             /* Keep only the values which was modified. */
@@ -77,10 +78,10 @@ export const resolvers = {
         },
 
         updateCar: async(_, data) => {
-            const values: IUser = data.values;
+            const values: User = data.values;
             if (!values || !values.id) throw new Error('Missing car id.');
 
-            let car = await models.Car.findById(values.id);
+            let car = await Car.findById(values.id);
             if (!car) throw new Error('User not found.');
 
             /* Keep only the values which was modified. */

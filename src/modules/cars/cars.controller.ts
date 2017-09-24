@@ -1,14 +1,15 @@
 'use strict';
 
 import { Controller, Get, Post, Put, Delete, HttpStatus, Request, Response } from '@nestjs/common';
-import { MessageCodeError } from '../../lib/error/MessageCodeError';
-import { models, sequelize } from '../../models/index';
+import { MessageCodeError } from '../common/lib/error/MessageCodeError';
+import { sequelize } from "../common/config/dataBase";
+import { Car } from '../common/models/Car';
 
 @Controller()
 export class CarsController {
     @Get('cars')
     public async index (@Request() req, @Response() res) {
-        const cars = await models.Car.findAll();
+        const cars = await Car.findAll<Car>();
         return res.status(HttpStatus.OK).json(cars);
     }
 
@@ -18,7 +19,7 @@ export class CarsController {
         if (!body || (body && Object.keys(body).length === 0)) throw new MessageCodeError('car:create:missingInformation');
 
         await sequelize.transaction(async t => {
-            return await models.Car.create(body, { transaction: t });
+            return await Car.create(body, { transaction: t });
         });
 
         return res.status(HttpStatus.CREATED).send();
@@ -29,7 +30,7 @@ export class CarsController {
         const id = req.params.id;
         if (!id) throw new MessageCodeError('car:show:missingId');
 
-        const car = await models.Car.findOne({
+        const car = await Car.findOne<Car>({
             where: { id }
         });
         return res.status(HttpStatus.OK).json(car);
@@ -43,7 +44,7 @@ export class CarsController {
         if (!body || (body && Object.keys(body).length === 0)) throw new MessageCodeError('car:update:missingInformation');
 
         await sequelize.transaction(async t => {
-            const car = await models.Car.findOne({
+            const car = await Car.findOne<Car>({
                 where: {
                     id,
                     userId: req['loggedInUser']
@@ -55,7 +56,7 @@ export class CarsController {
             /* Keep only the values which was modified. */
             const newValues = {};
             for (const key of Object.keys(body)) {
-                if (car.getDataValue(key) !== body[key]) newValues[key] = body[key];
+                if (car[key] !== body[key]) newValues[key] = body[key];
             }
 
             return await car.update(newValues, { transaction: t });
@@ -71,7 +72,7 @@ export class CarsController {
 
         await
         sequelize.transaction(async t => {
-            return await models.Car.destroy({
+            return await Car.destroy({
                 where: { id },
                 transaction: t
             });
