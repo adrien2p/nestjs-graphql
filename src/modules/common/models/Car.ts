@@ -2,7 +2,7 @@
 
 import {
     Table, Column, Model, DataType,
-    CreatedAt, UpdatedAt, DeletedAt, BeforeValidate, BeforeCreate, BelongsTo, ForeignKey, PrimaryKey
+    CreatedAt, UpdatedAt, DeletedAt, BeforeValidate, BelongsTo, ForeignKey
 } from 'sequelize-typescript';
 import { IDefineOptions } from "sequelize-typescript/lib/interfaces/IDefineOptions";
 import { MessageCodeError } from '../lib/error/MessageCodeError';
@@ -58,8 +58,8 @@ export class Car extends Model<Car> {
     @BeforeValidate
     static validateData (car: Car, options: any) {
         if (!options.transaction) throw new Error('Missing transaction.');
-        if (!car.getDataValue('userId')) throw new MessageCodeError('car:create:missingUserId');
-        if (!car.getDataValue('brandName')) throw new MessageCodeError('car:create:missingBrandName');
-        if (!car.getDataValue('purchaseDate')) throw new MessageCodeError('car:create:missingPurchaseDate');
+        if (!car.userId) throw new MessageCodeError('car:create:missingUserId');
+        if (!car.brandName) throw new MessageCodeError('car:create:missingBrandName');
+        if (!car.purchaseDate) throw new MessageCodeError('car:create:missingPurchaseDate');
     }
 }
