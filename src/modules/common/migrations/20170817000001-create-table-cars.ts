@@ -1,6 +1,6 @@
 'use strict';
 
-import { sequelize } from '../../common/models/index';
+import { sequelize } from '../config/dataBase';
 
 export async function up () {
     // language=PostgreSQL
