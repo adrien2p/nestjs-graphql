@@ -21,7 +21,7 @@ To use the env variable, remove `.demo` from `.env.demo`.
 
 ### What is provided more
 
-This repo provide a `graphql` module which allow to request `users`
+All features of [nest-js-sequelize-jwt](https://github.com/adrien2p/nest-js-sequelize-jwt) and this repo provide a `graphql` module which allow to request `users`
 and filter them for authenticated user.
 
 ### Request example
