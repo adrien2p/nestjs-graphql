@@ -1,7 +1,7 @@
 'use strict';
 
 import { Controller, Post, Request, Response, Next } from '@nestjs/common';
-import { graphqlExpress } from 'apollo-server-express'
+import { graphqlExpress } from 'apollo-server-express';
 import { schema } from './config/schema';
 
 @Controller()

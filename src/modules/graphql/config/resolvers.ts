@@ -1,10 +1,7 @@
 'use strict';
 
-import * as _ from 'lodash';
 import * as GraphQLJSON from 'graphql-type-json';
-import { User } from "../../common/models/User";
-import { Car } from "../../common/models/Car";
-import { sequelize } from "../../common/config/dataBase";
+import { sequelize, User, Car } from '../../common/index';
 
 export const resolvers = {
     JSON: GraphQLJSON,
@@ -14,7 +11,7 @@ export const resolvers = {
             return await Car.findAll<Car>({
                 where: { userId: user.getDataValue('id') }
             });
-        },
+        }
     },
     Query: {
         getUsers: (_, { filter, limit = 10, offset = 0 }) => {
@@ -57,7 +54,7 @@ export const resolvers = {
         }
     },
     Mutation: {
-        updateUser: async(_, data) => {
+        updateUser: async (_, data) => {
             const values: User = data.values;
             if (!values || !values.id) throw new Error('Missing user id.');
 
@@ -71,13 +68,13 @@ export const resolvers = {
             }
 
             await sequelize.transaction(async t => {
-                await user.update(newValues, { transaction: t })
+                await user.update(newValues, { transaction: t });
             });
             await user.reload();
             return user;
         },
 
-        updateCar: async(_, data) => {
+        updateCar: async (_, data) => {
             const values: User = data.values;
             if (!values || !values.id) throw new Error('Missing car id.');
 
@@ -91,7 +88,7 @@ export const resolvers = {
             }
 
             await sequelize.transaction(async t => {
-                await car.update(newValues, { transaction: t })
+                await car.update(newValues, { transaction: t });
             });
             await car.reload();
             return car;

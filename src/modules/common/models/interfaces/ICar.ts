@@ -4,9 +4,9 @@ import { Instance } from 'sequelize';
 
 export interface ICar {
     id: number;
-    userId: number,
+    userId: number;
     brandName: string;
-    purchaseDate: Date,
+    purchaseDate: Date;
     birthday?: Date;
     createdAt: Date;
     updatedAt: Date;

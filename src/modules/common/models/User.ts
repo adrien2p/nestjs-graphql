@@ -5,9 +5,9 @@ import {
     Table, Column, Model, DataType,
     CreatedAt, UpdatedAt, DeletedAt, BeforeValidate, BeforeCreate, Scopes, HasMany
 } from 'sequelize-typescript';
-import { IDefineOptions } from "sequelize-typescript/lib/interfaces/IDefineOptions";
+import { IDefineOptions } from 'sequelize-typescript/lib/interfaces/IDefineOptions';
 import { MessageCodeError } from '../lib/error/MessageCodeError';
-import { Car } from "./Car";
+import { Car } from './Car';
 
 const tableOptions: IDefineOptions = { timestamp: true, tableName: 'users' } as IDefineOptions;
 

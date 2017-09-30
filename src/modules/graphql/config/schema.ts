@@ -3,12 +3,12 @@ import { resolvers } from './resolvers';
 
 const typeDefs = `
   scalar JSON
-  
+
   schema {
     query: Query
     mutation: Mutation
   }
-  
+
   type User {
     id: ID!
     email: String!
@@ -17,10 +17,10 @@ const typeDefs = `
     createAt: String!
     updatedAt: String!
     deletedAt: String
-    
+
     cars: [Car!]
   }
-  
+
   type Car {
     id: ID!
     userId: ID!
@@ -35,19 +35,19 @@ const typeDefs = `
     getUsers(filter: UsersSearchFilter limit: Int offset: Int): [User!]!
     getCars(filter: CarsSearchFilter limit: Int offset: Int): [Car!]!
   }
-  
+
   type Mutation {
     updateUser(values: JSON!): User!
     updateCar(values: JSON!): Car!
   }
-  
+
   input UsersSearchFilter {
     id: Int
     email: String
     firstName: String
     lastName: String
   }
-  
+
   input CarsSearchFilter {
     id: Int
     userId: Int

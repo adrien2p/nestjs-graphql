@@ -104,7 +104,7 @@ export const errorMessagesConfig: { [messageCode: string]: IErrorMessages } = {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
         errorMessage: 'Unable to create a new car without brand name.',
-        userMessage: "Impossible de créer un véhicule sans la marque."
+        userMessage: 'Impossible de créer un véhicule sans la marque.'
     },
     'car:create:missingPurchaseDate': {
         type: 'BadRequest',
@@ -122,7 +122,7 @@ export const errorMessagesConfig: { [messageCode: string]: IErrorMessages } = {
         type: 'BadRequest',
         httpStatus: HttpStatus.BAD_REQUEST,
         errorMessage: 'Unable to update the car caused by missing information.',
-        userMessage: "Impossible de mettre à jour le véhicule avec des données manquantes."
+        userMessage: 'Impossible de mettre à jour le véhicule avec des données manquantes.'
     },
     'car:notFound': {
         type: 'notFound',

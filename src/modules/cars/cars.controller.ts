@@ -1,9 +1,7 @@
 'use strict';
 
 import { Controller, Get, Post, Put, Delete, HttpStatus, Request, Response } from '@nestjs/common';
-import { MessageCodeError } from '../common/lib/error/MessageCodeError';
-import { sequelize } from "../common/config/dataBase";
-import { Car } from '../common/models/Car';
+import { MessageCodeError, sequelize, Car } from '../common/index';
 
 @Controller()
 export class CarsController {

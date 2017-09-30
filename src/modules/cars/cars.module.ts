@@ -2,8 +2,8 @@
 
 import { Module } from '@nestjs/common';
 import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
-import { AuthMiddleware } from '../common/middlewares/auth.middleware';
-import { CarsController } from "./cars.controller";
+import { AuthMiddleware } from '../common/index';
+import { CarsController } from './cars.controller';
 
 @Module({
     controllers: [CarsController],
@@ -12,7 +12,7 @@ import { CarsController } from "./cars.controller";
     exports: []
 })
 export class CarsModule {
-    configure(consumer: MiddlewaresConsumer) {
+    configure (consumer: MiddlewaresConsumer) {
         consumer.apply(AuthMiddleware).forRoutes(CarsController);
     }
 }
