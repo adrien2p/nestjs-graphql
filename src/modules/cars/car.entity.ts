@@ -1,17 +1,25 @@
 'use strict';
 
 import {
-    Table, Column, Model, DataType,
-    CreatedAt, UpdatedAt, DeletedAt, BeforeValidate, BelongsTo, ForeignKey
+    Table,
+    Column,
+    Model,
+    DataType,
+    CreatedAt,
+    UpdatedAt,
+    DeletedAt,
+    BeforeValidate,
+    BelongsTo,
+    ForeignKey
 } from 'sequelize-typescript';
 import { IDefineOptions } from 'sequelize-typescript/lib/interfaces/IDefineOptions';
-import { MessageCodeError } from '../lib/error/MessageCodeError';
-import { User } from './User';
+import { MessageCodeError } from '../common/lib/error/MessageCodeError';
+import { User } from '../users/user.entity';
 
-const tableOptions: IDefineOptions = { timestamp: true, tableName: 'cars' } as IDefineOptions;
+const tableOptions: IDefineOptions = { timestamp: true, tableName: 'users' } as IDefineOptions;
 
 @Table(tableOptions)
-export class Car extends Model<Car> {
+export class Car extends Model<User> {
     @Column({
         type: DataType.NUMERIC,
         allowNull: false,

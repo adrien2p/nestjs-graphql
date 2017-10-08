@@ -4,7 +4,7 @@ import { Middleware, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { MessageCodeError } from '../lib/error/MessageCodeError';
-import { User } from '..//models/User';
+import { User } from '../../users/user.entity';
 
 @Middleware()
 export class AuthMiddleware implements NestMiddleware {

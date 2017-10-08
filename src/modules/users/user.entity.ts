@@ -3,19 +3,13 @@
 import * as crypto from 'crypto';
 import {
     Table, Column, Model, DataType,
-    CreatedAt, UpdatedAt, DeletedAt, BeforeValidate, BeforeCreate, Scopes, HasMany
+    CreatedAt, UpdatedAt, DeletedAt, BeforeValidate, BeforeCreate
 } from 'sequelize-typescript';
 import { IDefineOptions } from 'sequelize-typescript/lib/interfaces/IDefineOptions';
-import { MessageCodeError } from '../lib/error/MessageCodeError';
-import { Car } from './Car';
+import { MessageCodeError } from '../common/lib/error/MessageCodeError';
 
 const tableOptions: IDefineOptions = { timestamp: true, tableName: 'users' } as IDefineOptions;
 
-@Scopes({
-    cars: {
-        include: [() => Car]
-    }
-})
 @Table(tableOptions)
 export class User extends Model<User> {
     @Column({
@@ -73,12 +67,6 @@ export class User extends Model<User> {
 
     @DeletedAt
     deletedAt: Date;
-
-    @HasMany(() => Car, {
-        as: 'cars',
-        foreignKey: 'userId'
-    })
-    cars: Array<Car>;
 
     @BeforeValidate
     static validateData (user: User, options: any) {

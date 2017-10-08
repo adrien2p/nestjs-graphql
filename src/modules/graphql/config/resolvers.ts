@@ -1,7 +1,8 @@
 'use strict';
 
 import * as GraphQLJSON from 'graphql-type-json';
-import { sequelize, User, Car } from '../../common/index';
+import { User } from '../../users/user.entity';
+import { Car } from '../../cars/car.entity';
 
 export const resolvers = {
     JSON: GraphQLJSON,
@@ -67,9 +68,7 @@ export const resolvers = {
                 if (user.getDataValue(key) !== values[key]) newValues[key] = values[key];
             }
 
-            await sequelize.transaction(async t => {
-                await user.update(newValues, { transaction: t });
-            });
+            await user.update(newValues);
             await user.reload();
             return user;
         },
@@ -87,9 +86,7 @@ export const resolvers = {
                 if (car.getDataValue(key) !== values[key]) newValues[key] = values[key];
             }
 
-            await sequelize.transaction(async t => {
-                await car.update(newValues, { transaction: t });
-            });
+            await car.update(newValues);
             await car.reload();
             return car;
         }

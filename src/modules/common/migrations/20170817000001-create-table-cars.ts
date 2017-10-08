@@ -1,8 +1,6 @@
 'use strict';
 
-import { sequelize } from '../config/dataBase';
-
-export async function up () {
+export async function up (sequelize) {
     // language=PostgreSQL
     sequelize.query(`
         CREATE TABLE "cars" (
@@ -19,7 +17,7 @@ export async function up () {
     console.log('*Table cars created!*');
 }
 
-export async function down () {
+export async function down (sequelize) {
     // language=PostgreSQL
     sequelize.query(`DROP TABLE cars`);
 }
