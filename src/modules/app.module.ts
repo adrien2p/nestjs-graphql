@@ -13,8 +13,8 @@ import { CarsModule } from './cars/cars.module';
         UsersModule,
         CarsModule,
         AuthModule,
-        GraphqlModule
+        GraphqlModule,
     ],
-    exports: []
+    exports: [],
 })
 export class ApplicationModule { }

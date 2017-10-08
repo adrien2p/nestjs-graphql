@@ -13,11 +13,11 @@ import { carsRepository } from './cars.provider';
     controllers: [CarsController],
     components: [
         CarsService,
-        carsRepository
-    ]
+        carsRepository,
+    ],
 })
 export class CarsModule {
-    configure (consumer: MiddlewaresConsumer) {
+    public configure(consumer: MiddlewaresConsumer) {
         consumer.apply(AuthMiddleware).forRoutes(CarsController);
     }
 }

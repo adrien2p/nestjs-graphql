@@ -25,5 +25,5 @@ export const databaseProvider = {
         sequelize.addModels([Car]);
         /* await sequelize.sync(); add this if you want to sync model and DB.*/
         return sequelize;
-    }
+    },
 };

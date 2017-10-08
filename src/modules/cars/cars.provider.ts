@@ -4,5 +4,5 @@ import { Car } from './car.entity';
 
 export const carsRepository = {
     provide: 'CarsRepository',
-    useValue: Car
+    useValue: Car,
 };

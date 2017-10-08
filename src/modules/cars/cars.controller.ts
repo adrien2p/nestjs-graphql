@@ -6,16 +6,16 @@ import { CarsService } from './cars.service';
 
 @Controller()
 export class CarsController {
-    constructor (private readonly carsService: CarsService) { }
+    constructor(private readonly carsService: CarsService) { }
 
     @Get('cars')
-    public async index (@Response() res) {
+    public async index(@Response() res) {
         const users = await this.carsService.findAll();
         return res.status(HttpStatus.OK).json(users);
     }
 
     @Post('cars')
-    public async create (@Request() req, @Response() res) {
+    public async create(@Request() req, @Response() res) {
         const body = req.body;
         if (!body || (body && Object.keys(body).length === 0)) throw new MessageCodeError('car:create:missingInformation');
 
@@ -24,7 +24,7 @@ export class CarsController {
     }
 
     @Get('cars/:id')
-    public async show (@Request() req, @Response() res) {
+    public async show(@Request() req, @Response() res) {
         const id = req.params.id;
         if (!id) throw new MessageCodeError('car:show:missingId');
 
@@ -33,7 +33,7 @@ export class CarsController {
     }
 
     @Put('cars/:id')
-    public async update (@Request() req, @Response() res) {
+    public async update(@Request() req, @Response() res) {
         const id = req.params.id;
         if (!id) throw new MessageCodeError('car:update:missingId');
 
@@ -42,7 +42,7 @@ export class CarsController {
     }
 
     @Delete('cars/:id')
-    public async delete (@Request() req, @Response() res) {
+    public async delete(@Request() req, @Response() res) {
         const id = req.params.id;
         if (!id) throw new MessageCodeError('car:delete:missingId');
 

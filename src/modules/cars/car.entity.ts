@@ -10,7 +10,7 @@ import {
     DeletedAt,
     BeforeValidate,
     BelongsTo,
-    ForeignKey
+    ForeignKey,
 } from 'sequelize-typescript';
 import { IDefineOptions } from 'sequelize-typescript/lib/interfaces/IDefineOptions';
 import { MessageCodeError } from '../common/lib/error/MessageCodeError';
@@ -25,46 +25,46 @@ export class Car extends Model<User> {
         allowNull: false,
         autoIncrement: true,
         unique: true,
-        primaryKey: true
+        primaryKey: true,
     })
-    id: number;
+    public id: number;
 
     @Column({
         type: DataType.NUMERIC,
-        allowNull: false
+        allowNull: false,
     })
     @ForeignKey(() => User)
-    userId: number;
+    public userId: number;
 
     @Column({
         type: DataType.CHAR(50),
-        allowNull: false
+        allowNull: false,
     })
-    brandName: string;
+    public brandName: string;
 
     @Column({
         type: DataType.DATE,
-        allowNull: false
+        allowNull: false,
     })
-    purchaseDate: Date;
+    public purchaseDate: Date;
 
     @CreatedAt
-    createdAt: Date;
+    public createdAt: Date;
 
     @UpdatedAt
-    updatedAt: Date;
+    public updatedAt: Date;
 
     @DeletedAt
-    deletedAt: Date;
+    public deletedAt: Date;
 
     @BelongsTo(() => User, {
         as: 'owner',
-        foreignKey: 'userId'
+        foreignKey: 'userId',
     })
-    user: User;
+    public user: User;
 
     @BeforeValidate
-    static validateData (car: Car, options: any) {
+    public static validateData(car: Car, options: any) {
         if (!options.transaction) throw new Error('Missing transaction.');
         if (!car.userId) throw new MessageCodeError('car:create:missingUserId');
         if (!car.brandName) throw new MessageCodeError('car:create:missingBrandName');

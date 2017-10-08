@@ -58,5 +58,5 @@ const typeDefs = `
 
 export const schema = makeExecutableSchema({
     typeDefs,
-    resolvers
+    resolvers,
 });

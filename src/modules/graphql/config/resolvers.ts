@@ -10,9 +10,9 @@ export const resolvers = {
         /* Return cars belongs to the user when user(s) is/are requested. */
         cars: async (user: User) => {
             return await Car.findAll<Car>({
-                where: { userId: user.getDataValue('id') }
+                where: { userId: user.getDataValue('id') },
             });
-        }
+        },
     },
     Query: {
         getUsers: (_, { filter, limit = 10, offset = 0 }) => {
@@ -30,8 +30,8 @@ export const resolvers = {
                 offset,
                 limit,
                 order: [
-                    ['id', 'ASC']
-                ]
+                    ['id', 'ASC'],
+                ],
             });
         },
 
@@ -49,17 +49,17 @@ export const resolvers = {
                 offset,
                 limit,
                 order: [
-                    ['id', 'ASC']
-                ]
+                    ['id', 'ASC'],
+                ],
             });
-        }
+        },
     },
     Mutation: {
         updateUser: async (_, data) => {
             const values: User = data.values;
             if (!values || !values.id) throw new Error('Missing user id.');
 
-            let user = await User.findById(values.id);
+            const user = await User.findById(values.id);
             if (!user) throw new Error('User not found.');
 
             /* Keep only the values which was modified. */
@@ -77,7 +77,7 @@ export const resolvers = {
             const values: User = data.values;
             if (!values || !values.id) throw new Error('Missing car id.');
 
-            let car = await Car.findById(values.id);
+            const car = await Car.findById(values.id);
             if (!car) throw new Error('User not found.');
 
             /* Keep only the values which was modified. */
@@ -89,6 +89,6 @@ export const resolvers = {
             await car.update(newValues);
             await car.reload();
             return car;
-        }
-    }
+        },
+    },
 };

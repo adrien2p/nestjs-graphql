@@ -9,31 +9,31 @@ import { ICar } from './interfaces/ICar';
 
 @Component()
 export class CarsService implements ICarService {
-    constructor (@Inject('CarsRepository') private readonly carsRepository: typeof Model,
+    constructor(@Inject('CarsRepository') private readonly carsRepository: typeof Model,
                 @Inject('SequelizeInstance') private readonly sequelizeInstance) { }
 
-    public async findAll (): Promise<Array<Car>> {
+    public async findAll(): Promise<Array<Car>> {
         return await this.carsRepository.findAll<Car>();
     }
 
-    public async findById (id: number): Promise<Car | null> {
+    public async findById(id: number): Promise<Car | null> {
         return await this.carsRepository.findById<Car>(id);
     }
 
-    public async findOne (options: Object): Promise<Car | null> {
+    public async findOne(options: Object): Promise<Car | null> {
         return await this.carsRepository.findOne<Car>(options);
     }
 
-    public async create (user: Car): Promise<Car> {
+    public async create(user: Car): Promise<Car> {
         return await this.sequelizeInstance.transaction(async transaction => {
             return await this.carsRepository.create<Car>(user, {
                 returning: true,
-                transaction
+                transaction,
             });
         });
     }
 
-    public async update (id: number, newValue: ICar): Promise<Car | null> {
+    public async update(id: number, newValue: ICar): Promise<Car | null> {
         return await this.sequelizeInstance.transaction(async transaction => {
             let user = await this.carsRepository.findById<Car>(id, { transaction });
             if (!user) throw new MessageCodeError('user:notFound');
@@ -41,16 +41,16 @@ export class CarsService implements ICarService {
             user = this._assign(user, newValue);
             return await user.save({
                 returning: true,
-                transaction
+                transaction,
             });
         });
     }
 
-    public async delete (id: number): Promise<void> {
+    public async delete(id: number): Promise<void> {
         return await this.sequelizeInstance.transaction(async transaction => {
             return await this.carsRepository.destroy({
                 where: { id },
-                transaction
+                transaction,
             });
         });
     }
@@ -63,7 +63,7 @@ export class CarsService implements ICarService {
      * @return {User}
      * @private
      */
-    private _assign (user: ICar, newValue: ICar): Car {
+    private _assign(user: ICar, newValue: ICar): Car {
         for (const key of Object.keys(user)) {
             if (user[key] !== newValue[key]) user[key] = newValue[key];
         }

@@ -8,10 +8,10 @@ import { GraphqlController } from './graphql.controller';
 
 @Module({
     modules: [DatabaseModule],
-    controllers: [GraphqlController]
+    controllers: [GraphqlController],
 })
 export class GraphqlModule {
-    configure (consumer: MiddlewaresConsumer) {
+    public configure(consumer: MiddlewaresConsumer) {
         consumer.apply(AuthMiddleware).forRoutes(GraphqlController);
     }
 }
