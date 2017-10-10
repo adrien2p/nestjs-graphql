@@ -8,9 +8,10 @@ import { CarsService } from "../cars/cars.service";
 import { Car } from "../cars/car.entity";
 import { UsersService } from "../users/users.service";
 import { User } from "../users/user.entity";
+import { IGraphqlService } from "./interfaces/IGraphqlService";
 
 @Component()
-export class GraphqlService {
+export class GraphqlService implements IGraphqlService {
     constructor(@Inject('TypeDefsProvider') private readonly typeDefsProvider,
                 private readonly carsService: CarsService,
                 private readonly usersService: UsersService) { }
@@ -39,13 +40,13 @@ export class GraphqlService {
         };
     }
 
-    public get cars(): Function {
-        return async (user: User) => {
+    public get cars(): (user: User) => Promise<Array<Car>> {
+        return async (user: User): Promise<Array<Car>> => {
             return await this.carsService.findAll({ where: { userId: user.id }});
         };
     }
 
-    public get getUsers(): Function {
+    public get getUsers(): (_: any, { filter, limit, offset }) => Promise<Array<User>> {
         return async (_: any, { filter, limit = 10, offset = 0 }) => {
             limit = Math.min(limit, 100);
 
@@ -67,7 +68,7 @@ export class GraphqlService {
         };
     }
 
-    public get getCars(): Function {
+    public get getCars(): (_: any, { filter, limit, offset }) => Promise<Array<Car>> {
         return async (_: any, { filter, limit = 10, offset = 0 }) => {
             limit = Math.min(limit, 100);
 
@@ -89,15 +90,15 @@ export class GraphqlService {
         };
     }
 
-    public get updateUser(): Function {
-        return async (_: any, user: User) => {
+    public get updateUser(): (_: any, user: User) => Promise<User> {
+        return async (_: any, user: User): Promise<User> => {
             if (!user.id) throw new Error('Missing user id.');
             return await this.usersService.update(user.id, user);
         };
     }
 
-    public get updateCar(): Function {
-        return async (_: any, car: Car) => {
+    public get updateCar(): (_: any, car: Car) => Promise<Car> {
+        return async (_: any, car: Car): Promise<Car> => {
             if (!car.id) throw new Error('Missing car id.');
             return await this.carsService.update(car.id, car);
         };
