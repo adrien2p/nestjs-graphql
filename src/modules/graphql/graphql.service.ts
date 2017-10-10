@@ -1,14 +1,14 @@
 'use strict';
 
-import { Component, Inject } from "@nestjs/common";
-import { GraphQLSchema } from "graphql";
+import { Component, Inject } from '@nestjs/common';
+import { GraphQLSchema } from 'graphql';
 import * as GraphQLJSON from 'graphql-type-json';
 import { makeExecutableSchema } from 'graphql-tools';
-import { CarsService } from "../cars/cars.service";
-import { Car } from "../cars/car.entity";
-import { UsersService } from "../users/users.service";
-import { User } from "../users/user.entity";
-import { IGraphqlService } from "./interfaces/IGraphqlService";
+import { CarsService } from '../cars/cars.service';
+import { Car } from '../cars/car.entity';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/user.entity';
+import { IGraphqlService } from './interfaces/IGraphqlService';
 
 @Component()
 export class GraphqlService implements IGraphqlService {
@@ -19,7 +19,7 @@ export class GraphqlService implements IGraphqlService {
     public get schema(): GraphQLSchema {
         return makeExecutableSchema({
             typeDefs: this.typeDefsProvider,
-            resolvers: this.resolvers
+            resolvers: this.resolvers,
         });
     }
 
@@ -27,16 +27,16 @@ export class GraphqlService implements IGraphqlService {
         return {
             JSON: GraphQLJSON,
             User: {
-                cars: this.cars
+                cars: this.cars,
             },
             Query: {
                 getUsers: this.getUsers,
-                getCars: this.getCars
+                getCars: this.getCars,
             },
             Mutation: {
                 updateUser: this.updateUser,
-                updateCar: this.updateCar
-            }
+                updateCar: this.updateCar,
+            },
         };
     }
 

@@ -2,7 +2,7 @@
 
 import { Controller, Post, Request, Response, Next } from '@nestjs/common';
 import { graphqlExpress } from 'apollo-server-express';
-import { GraphqlService } from "./graphql.service";
+import { GraphqlService } from './graphql.service';
 
 @Controller()
 export class GraphqlController {

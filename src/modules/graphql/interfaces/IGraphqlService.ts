@@ -1,8 +1,8 @@
 'use strict';
 
-import { Car } from "../../cars/car.entity";
-import { User } from "../../users/user.entity";
-import { GraphQLSchema } from "graphql";
+import { Car } from '../../cars/car.entity';
+import { User } from '../../users/user.entity';
+import { GraphQLSchema } from 'graphql';
 
 export interface IGraphqlService {
     readonly schema: GraphQLSchema;
