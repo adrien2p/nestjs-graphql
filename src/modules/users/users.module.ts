@@ -15,6 +15,7 @@ import { usersProvider } from './users.provider';
         UsersService,
         usersProvider,
     ],
+    exports: [UsersService]
 })
 export class UsersModule {
     public configure(consumer: MiddlewaresConsumer) {

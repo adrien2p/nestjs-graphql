@@ -16,12 +16,12 @@ import { IDefineOptions } from 'sequelize-typescript/lib/interfaces/IDefineOptio
 import { MessageCodeError } from '../common/lib/error/MessageCodeError';
 import { User } from '../users/user.entity';
 
-const tableOptions: IDefineOptions = { timestamp: true, tableName: 'users' } as IDefineOptions;
+const tableOptions: IDefineOptions = { timestamp: true, tableName: 'cars' } as IDefineOptions;
 
 @Table(tableOptions)
-export class Car extends Model<User> {
+export class Car extends Model<Car> {
     @Column({
-        type: DataType.NUMERIC,
+        type: DataType.INTEGER,
         allowNull: false,
         autoIncrement: true,
         unique: true,
@@ -30,7 +30,7 @@ export class Car extends Model<User> {
     public id: number;
 
     @Column({
-        type: DataType.NUMERIC,
+        type: DataType.INTEGER,
         allowNull: false,
     })
     @ForeignKey(() => User)

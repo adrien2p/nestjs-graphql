@@ -11,8 +11,8 @@ export class UsersService implements IUserService {
     constructor(@Inject('UsersRepository') private readonly usersRepository: typeof Model,
                 @Inject('SequelizeInstance') private readonly sequelizeInstance) { }
 
-    public async findAll(): Promise<Array<User>> {
-        return await this.usersRepository.findAll<User>();
+    public async findAll(options?: any): Promise<Array<User>> {
+        return await this.usersRepository.findAll<User>(options);
     }
 
     public async findOne(options: Object): Promise<User | null> {

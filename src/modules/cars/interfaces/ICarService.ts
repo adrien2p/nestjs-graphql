@@ -4,7 +4,7 @@ import { ICar } from './ICar';
 import { Car } from '../car.entity';
 
 export interface ICarService {
-    findAll(): Promise<Array<Car>>;
+    findAll(options: any): Promise<Array<Car>>;
     findById(id: number): Promise<Car | null>;
     findOne(options: Object): Promise<Car | null>;
     create(user: ICar): Promise<Car>;

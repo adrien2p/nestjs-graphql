@@ -12,8 +12,8 @@ export class CarsService implements ICarService {
     constructor(@Inject('CarsRepository') private readonly carsRepository: typeof Model,
                 @Inject('SequelizeInstance') private readonly sequelizeInstance) { }
 
-    public async findAll(): Promise<Array<Car>> {
-        return await this.carsRepository.findAll<Car>();
+    public async findAll(options?: any): Promise<Array<Car>> {
+        return await this.carsRepository.findAll<Car>(options);
     }
 
     public async findById(id: number): Promise<Car | null> {
@@ -56,11 +56,11 @@ export class CarsService implements ICarService {
     }
 
     /**
-     * @description: Assign new value in the user found in the database.
+     * @description: Assign new value in the car found in the database.
      *
      * @param {ICar} user
      * @param {ICar} newValue
-     * @return {User}
+     * @return {Car}
      * @private
      */
     private _assign(user: ICar, newValue: ICar): Car {

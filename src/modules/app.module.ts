@@ -7,14 +7,11 @@ import { GraphqlModule } from './graphql/graphql.module';
 import { CarsModule } from './cars/cars.module';
 
 @Module({
-    controllers: [],
-    components: [],
     modules: [
         UsersModule,
         CarsModule,
         AuthModule,
         GraphqlModule,
-    ],
-    exports: [],
+    ]
 })
 export class ApplicationModule { }

@@ -20,7 +20,7 @@ const tableOptions: IDefineOptions = { timestamp: true, tableName: 'users' } as 
 @Table(tableOptions)
 export class User extends Model<User> {
     @Column({
-        type: DataType.NUMERIC,
+        type: DataType.INTEGER,
         allowNull: false,
         autoIncrement: true,
         unique: true,

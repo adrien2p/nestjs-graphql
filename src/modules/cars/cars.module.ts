@@ -15,6 +15,7 @@ import { carsRepository } from './cars.provider';
         CarsService,
         carsRepository,
     ],
+    exports: [CarsService]
 })
 export class CarsModule {
     public configure(consumer: MiddlewaresConsumer) {
