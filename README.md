@@ -1,3 +1,5 @@
+### [UNMAINTAINED]
+
 ![Nest](assets/logo.png)
 
 ### Project based on [nest-js-sequelize-jwt](https://github.com/adrien2p/nest-js-sequelize-jwt) and use
